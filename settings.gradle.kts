@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "android_chadopedia_app"
-include ':app'
+include (":app")
