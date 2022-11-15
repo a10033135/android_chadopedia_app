@@ -60,4 +60,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.3.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.1")
+
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("com.google.accompanist:accompanist-pager:0.23.1")
+
 }
