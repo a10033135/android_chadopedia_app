@@ -12,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
@@ -21,6 +22,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import idv.tungfanhall.android_chadopedia_app.R
 import idv.tungfanhall.android_chadopedia_app.ui.navigation.PediaNavRouter
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg700
@@ -82,7 +84,10 @@ fun Page1(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         content = {
 
-            item { Head() }
+            item {
+                Head()
+            }
+
 
             val list = mutableListOf<String>()
             for (i in 1..100) {
@@ -90,6 +95,8 @@ fun Page1(navController: NavController) {
             }
             itemsIndexed(list) { _, item ->
                 Column() {
+                    stringResource(id = R.string.app_name)
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()

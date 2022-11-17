@@ -11,6 +11,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
+
 }
 rootProject.name = "android_chadopedia_app"
 include(":app")

@@ -14,8 +14,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import idv.tungfanhall.android_chadopedia_app.feature.login.LoginActivity
 import idv.tungfanhall.android_chadopedia_app.ui.component.NavBottomBar
 import idv.tungfanhall.android_chadopedia_app.ui.navigation.NavGraph
@@ -23,19 +26,31 @@ import idv.tungfanhall.android_chadopedia_app.ui.navigation.PediaNavRouter
 import idv.tungfanhall.android_chadopedia_app.ui.theme.Android_chadopedia_appTheme
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg700
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class MainActivity : ComponentActivity() {
+
+    private val TAG = MainActivity::class.java.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            val db = Firebase.firestore
+            val result = db.collection("users").get().await()
+            Log.e(TAG, result.documents.toString())
+
+
+        }
+
+
+
         setContent {
-
-
             Android_chadopedia_appTheme {
                 val navController = rememberNavController()
                 val isShowBtmBar =
                     navController.currentBackStackEntryAsState().value?.destination?.route?.contains("home")
-
-
                 Scaffold(bottomBar = {
                     if (isShowBtmBar == true) {
                         NavBottomBar(navController)

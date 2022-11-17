@@ -59,7 +59,7 @@ fun NavBottomBar(navController: NavController) {
                     contentDescription = "設定"
                 )
             },
-            selected = HomeNavRouter.Doc.path == currentRoute,
+            selected = HomeNavRouter.Setting.path == currentRoute,
             selectedContentColor = GreenBg700,
             unselectedContentColor = Color.Gray,
             onClick = {
