@@ -74,5 +74,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.android.gms:play-services-auth:20.3.0")
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+
+    // firestore
     implementation("com.google.firebase:firebase-firestore-ktx:24.4.0")
+
+    // koin
+    implementation("io.insert-koin:koin-core:3.2.2")
 }

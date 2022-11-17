@@ -4,6 +4,7 @@ sealed class HomeNavRouter(val path: String = "home") {
 
     object Doc : HomeNavRouter("home/doc")
     object Setting : HomeNavRouter("home/setting")
+    object Search : HomeNavRouter("home/search")
 
 }
 

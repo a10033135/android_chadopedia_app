@@ -23,6 +23,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import idv.tungfanhall.android_chadopedia_app.R
+import idv.tungfanhall.android_chadopedia_app.ui.component.Head
+import idv.tungfanhall.android_chadopedia_app.ui.feature.doc.news.Page2
+import idv.tungfanhall.android_chadopedia_app.ui.feature.doc.pedia.Page1
 import idv.tungfanhall.android_chadopedia_app.ui.navigation.PediaNavRouter
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg700
@@ -39,6 +42,7 @@ fun DocScreen(navController: NavController) {
         Column {
             val pagerState = rememberPagerState()
             val scope = rememberCoroutineScope()
+
             TabRow(
                 modifier = Modifier.wrapContentHeight(),
                 backgroundColor = GreenBg500,
@@ -75,90 +79,4 @@ fun DocScreen(navController: NavController) {
         }
     }
 
-}
-
-@OptIn(ExperimentalUnitApi::class)
-@Composable
-fun Page1(navController: NavController) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        content = {
-
-            item {
-                Head()
-            }
-
-
-            val list = mutableListOf<String>()
-            for (i in 1..100) {
-                list.add(i.toString())
-            }
-            itemsIndexed(list) { _, item ->
-                Column() {
-                    stringResource(id = R.string.app_name)
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(20.dp)
-                            .clickable {
-                                Log.e("TAG", "click")
-                                navController.navigate(PediaNavRouter.Detail.path)
-                            }
-                    ) {
-                        Text(modifier = Modifier.weight(1f), text = "茶道", fontSize = TextUnit(20F, TextUnitType(20)))
-                        Text(modifier = Modifier.weight(1f), text = "描述", fontSize = TextUnit(20F, TextUnitType(20)))
-                    }
-                    Divider()
-                }
-
-            }
-        })
-}
-
-@Composable
-fun Page2() {
-
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Text(text = "2")
-
-    }
-}
-
-@Composable
-fun Head() {
-    Column(
-        modifier = Modifier
-            .wrapContentHeight()
-            .padding(20.dp)
-            .clip(Shapes.medium)
-            .border(0.5.dp, Color.Black)
-    ) {
-        Text(
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(GreenBg700),
-            text = "茶道體驗",
-            color = Color.White
-        )
-
-        Text(
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White),
-            text = "每月480元"
-        )
-
-        Text(
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White),
-            text = "瞭解詳情"
-        )
-
-
-    }
 }

@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import idv.tungfanhall.android_chadopedia_app.ui.feature.detail.DetailScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.setting.SettingScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.doc.DocScreen
+import idv.tungfanhall.android_chadopedia_app.ui.feature.search.SearchScreen
 
 @Composable
 fun NavGraph(modifier: Modifier = Modifier, navController: NavHostController) {
@@ -19,28 +20,12 @@ fun NavGraph(modifier: Modifier = Modifier, navController: NavHostController) {
         startDestination = "home"
     ) {
         navigation(route = "home", startDestination = HomeNavRouter.Doc.path) {
-            addDocScreen(navController, this)
-            addSettingScreen(navController, this)
+            composable(HomeNavRouter.Doc.path) { DocScreen(navController) }
+            composable(HomeNavRouter.Search.path) { SearchScreen() }
+            composable(HomeNavRouter.Setting.path) { SettingScreen() }
+
         }
-        addPediaScreen(navController, this)
+        composable(PediaNavRouter.Detail.path) { DetailScreen(navController) }
     }
 
-}
-
-private fun addPediaScreen(navController: NavHostController, navGraphBuilder: NavGraphBuilder) {
-    navGraphBuilder.composable(route = PediaNavRouter.Detail.path) {
-        DetailScreen(navController = navController)
-    }
-}
-
-private fun addDocScreen(navController: NavHostController, navGraphBuilder: NavGraphBuilder) {
-    navGraphBuilder.composable(route = HomeNavRouter.Doc.path) {
-        DocScreen(navController)
-    }
-}
-
-private fun addSettingScreen(navController: NavHostController, navGraphBuilder: NavGraphBuilder) {
-    navGraphBuilder.composable(route = HomeNavRouter.Setting.path) {
-        SettingScreen()
-    }
 }
