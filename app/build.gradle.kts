@@ -76,8 +76,9 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
 
     // firestore
-    implementation("com.google.firebase:firebase-firestore-ktx:24.4.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.4.1")
 
     // koin
-    implementation("io.insert-koin:koin-core:3.2.2")
+    implementation("io.insert-koin:koin-android:3.3.0")
+    implementation("com.github.zhaokaiqiang:klog:-SNAPSHOT")
 }
