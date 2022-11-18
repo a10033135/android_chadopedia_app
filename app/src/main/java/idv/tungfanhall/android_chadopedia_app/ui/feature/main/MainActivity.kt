@@ -49,6 +49,7 @@ class MainActivity : BaseActivity() {
 
     override fun initAction() {
         docVM.getPediaData()
+        docVM.getCurrentUser()
     }
 
     @Composable

@@ -1,6 +1,9 @@
 package idv.tungfanhall.android_chadopedia_app.ui.feature.main
 
 import androidx.lifecycle.viewModelScope
+import com.firebase.ui.auth.data.model.User
+import com.google.android.gms.common.api.Api
+import com.google.firebase.auth.FirebaseUser
 import com.socks.library.KLog
 import idv.tungfanhall.android_chadopedia_app.model.PediaDocument
 import idv.tungfanhall.android_chadopedia_app.ui.logic.BaseViewModel
@@ -14,12 +17,23 @@ class DocViewModel : BaseViewModel(), Input, Output {
 
     val flowPedias = MutableStateFlow<ApiResult<List<PediaDocument>>>(ApiResult.loading())
 
+    val flowCurrentUser = MutableStateFlow<ApiResult<FirebaseUser?>>(ApiResult.loading())
+
     override fun getPediaData() {
-        KLog.d(tag, DocViewModel::class.java.simpleName)
+        KLog.d(tag, "getPediaData")
         viewModelScope.launch {
             flowPedias.emit(ApiResult.loading())
             val pedias = FirebaseUtil.document("pedia", PediaDocument::class.java)
             flowPedias.emit(ApiResult.success(pedias))
+        }
+    }
+
+    override fun getCurrentUser() {
+        KLog.d(tag, "currentUser")
+        viewModelScope.launch {
+            flowCurrentUser.emit(ApiResult.loading())
+            val user = FirebaseUtil.currentUser
+            flowCurrentUser.emit(ApiResult.success(user))
         }
     }
 
@@ -28,6 +42,8 @@ class DocViewModel : BaseViewModel(), Input, Output {
 interface Input {
 
     fun getPediaData()
+
+    fun getCurrentUser()
 }
 
 interface Output {

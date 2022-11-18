@@ -1,5 +1,7 @@
 package idv.tungfanhall.android_chadopedia_app.ui.component
 
+import android.graphics.drawable.Icon
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
@@ -7,12 +9,15 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.List
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -29,44 +34,46 @@ fun NavBottomBar(navController: NavController) {
         backgroundColor = GreenBg500
     ) {
 
-        val iconSize = 30.dp
+        MainBtmNaviIcon(
+            label = "首頁",
+            icon = Icons.Rounded.Home,
+            isSelected = HomeNavRouter.Doc.path == currentRoute
+        ) {
+            navController.navigate(HomeNavRouter.Doc.path) { popUpTo(HomeNavRouter.Doc.path) }
+        }
 
-        BottomNavigationItem(
-            label = { Text(text = "首頁") },
-            icon = {
-                Icon(
-                    modifier = Modifier.size(iconSize),
-                    imageVector = Icons.Rounded.List,
-                    contentDescription = "首頁"
-                )
-            },
-            selected = HomeNavRouter.Doc.path == currentRoute,
-            selectedContentColor = GreenBg700,
-            unselectedContentColor = Color.Gray,
-            onClick = {
-                navController.navigate(HomeNavRouter.Doc.path) {
-                    popUpTo(HomeNavRouter.Doc.path)
-                }
-            },
-        )
+        MainBtmNaviIcon(
+            label = "搜尋",
+            icon = Icons.Rounded.Search,
+            isSelected = HomeNavRouter.Search.path == currentRoute
+        ) {
+            navController.navigate(HomeNavRouter.Search.path) { popUpTo(HomeNavRouter.Doc.path) }
+        }
 
-        BottomNavigationItem(
-            label = { Text(text = "設定") },
-            icon = {
-                Icon(
-                    modifier = Modifier.size(iconSize),
-                    imageVector = Icons.Rounded.Settings,
-                    contentDescription = "設定"
-                )
-            },
-            selected = HomeNavRouter.Setting.path == currentRoute,
-            selectedContentColor = GreenBg700,
-            unselectedContentColor = Color.Gray,
-            onClick = {
-                navController.navigate(HomeNavRouter.Setting.path) {
-                    popUpTo(HomeNavRouter.Doc.path)
-                }
-            },
-        )
+        MainBtmNaviIcon(
+            label = "設定",
+            icon = Icons.Rounded.Settings,
+            isSelected = HomeNavRouter.Setting.path == currentRoute
+        ) {
+            navController.navigate(HomeNavRouter.Setting.path) { popUpTo(HomeNavRouter.Doc.path) }
+        }
     }
+}
+
+@Composable
+private fun RowScope.MainBtmNaviIcon(label: String, icon: ImageVector, isSelected: Boolean, onClick: () -> Unit) {
+    BottomNavigationItem(
+        label = { Text(text = label) },
+        icon = {
+            Icon(
+                modifier = Modifier.size(30.dp),
+                imageVector = icon,
+                contentDescription = label
+            )
+        },
+        selected = isSelected,
+        selectedContentColor = GreenBg700,
+        unselectedContentColor = Color.Gray,
+        onClick = onClick,
+    )
 }

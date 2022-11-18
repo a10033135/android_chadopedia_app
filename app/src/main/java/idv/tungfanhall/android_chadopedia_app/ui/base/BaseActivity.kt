@@ -8,10 +8,20 @@ import com.socks.library.KLog
 
 abstract class BaseActivity : ComponentActivity() {
 
+    abstract val tag: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         KLog.i(tag, "onCreate")
         setContent { ContentView() }
+    }
+
+    @Composable
+    abstract fun ContentView()
+
+
+    open fun initAction() {
+        KLog.i(tag, "initAction")
     }
 
     override fun onDestroy() {
@@ -19,10 +29,4 @@ abstract class BaseActivity : ComponentActivity() {
         KLog.i(tag, "onDestroy")
     }
 
-    abstract val tag: String
-
-    @Composable
-    abstract fun ContentView()
-
-    open fun initAction() {}
 }

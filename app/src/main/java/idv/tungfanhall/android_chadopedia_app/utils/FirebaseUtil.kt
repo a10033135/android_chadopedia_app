@@ -15,6 +15,8 @@ object FirebaseUtil {
     val isSignUp: Boolean
         get() = fireAuth.currentUser != null
 
+    val currentUser = fireAuth.currentUser
+
     suspend fun <T> document(docName: String, objClazz: Class<T>): List<T> {
         KLog.e(TAG, "isSignUp: $isSignUp")
         return if (isSignUp) {
@@ -25,4 +27,6 @@ object FirebaseUtil {
             mutableListOf()
         }
     }
+
+
 }
