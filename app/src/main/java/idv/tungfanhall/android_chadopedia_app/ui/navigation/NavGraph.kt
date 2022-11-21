@@ -6,10 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import idv.tungfanhall.android_chadopedia_app.ui.feature.detail.DetailScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
 import idv.tungfanhall.android_chadopedia_app.ui.feature.setting.SettingScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.PediaScreen
+import idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.gridDoc.GridScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.search.SearchScreen
 
 @Composable
@@ -25,7 +25,7 @@ fun NavGraph(modifier: Modifier = Modifier, navController: NavHostController, do
             composable(HomeNavRouter.Setting.path) { SettingScreen(docVM) }
 
         }
-        composable(PediaNavRouter.Detail.path) { DetailScreen(navController) }
+        composable(PediaNavRouter.Detail.path) { GridScreen(navController) }
     }
 
 }

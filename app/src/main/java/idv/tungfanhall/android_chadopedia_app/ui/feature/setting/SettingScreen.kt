@@ -33,6 +33,9 @@ fun SettingScreen(docVM: DocViewModel) {
                 }
             }
 
+            else -> {
+                
+            }
         }
 
     }

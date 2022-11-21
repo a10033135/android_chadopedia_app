@@ -81,4 +81,7 @@ dependencies {
     // koin
     implementation("io.insert-koin:koin-android:3.3.0")
     implementation("com.github.zhaokaiqiang:klog:-SNAPSHOT")
+
+    //compose
+    implementation("io.coil-kt:coil-compose:2.2.2")
 }

@@ -12,9 +12,9 @@ import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.news.NewsScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.doc.PediaScreen
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
+import idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.gridDoc.GridScreen
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg700
 import kotlinx.coroutines.launch
@@ -62,7 +62,7 @@ fun PediaScreen(
                         PediaScreen(navController, docVM)
                     }
                     1 -> {
-                        NewsScreen()
+                        GridScreen(navController)
                     }
                 }
             }

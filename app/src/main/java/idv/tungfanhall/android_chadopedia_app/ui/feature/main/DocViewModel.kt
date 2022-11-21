@@ -1,11 +1,9 @@
 package idv.tungfanhall.android_chadopedia_app.ui.feature.main
 
 import androidx.lifecycle.viewModelScope
-import com.firebase.ui.auth.data.model.User
-import com.google.android.gms.common.api.Api
 import com.google.firebase.auth.FirebaseUser
 import com.socks.library.KLog
-import idv.tungfanhall.android_chadopedia_app.model.PediaDocument
+import idv.tungfanhall.android_chadopedia_app.model.ChadoMainCategory
 import idv.tungfanhall.android_chadopedia_app.ui.logic.BaseViewModel
 import idv.tungfanhall.android_chadopedia_app.utils.FirebaseUtil
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +13,8 @@ class DocViewModel : BaseViewModel(), Input, Output {
 
     private val tag = DocViewModel::class.java.simpleName
 
-    val flowPedias = MutableStateFlow<ApiResult<List<PediaDocument>>>(ApiResult.loading())
+    val flowPedias =
+        MutableStateFlow<ApiResult<MutableList<ChadoMainCategory>>>(ApiResult.loading())
 
     val flowCurrentUser = MutableStateFlow<ApiResult<FirebaseUser?>>(ApiResult.loading())
 
@@ -23,7 +22,7 @@ class DocViewModel : BaseViewModel(), Input, Output {
         KLog.d(tag, "getPediaData")
         viewModelScope.launch {
             flowPedias.emit(ApiResult.loading())
-            val pedias = FirebaseUtil.document("pedia", PediaDocument::class.java)
+            val pedias = FirebaseUtil.document("pedia", ChadoMainCategory::class.java)
             flowPedias.emit(ApiResult.success(pedias))
         }
     }

@@ -17,12 +17,13 @@ object FirebaseUtil {
 
     val currentUser = fireAuth.currentUser
 
-    suspend fun <T> document(docName: String, objClazz: Class<T>): List<T> {
+    suspend fun <T> document(docName: String, objClazz: Class<T>): MutableList<T> {
         KLog.e(TAG, "isSignUp: $isSignUp")
         return if (isSignUp) {
-            firestore.collection(docName).get().await().documents.mapNotNull {
-                it.toObject(objClazz)
-            }
+            firestore
+                .collection(docName).get().await().documents
+                .mapNotNull { it.toObject(objClazz) }
+                .toMutableList()
         } else {
             mutableListOf()
         }
