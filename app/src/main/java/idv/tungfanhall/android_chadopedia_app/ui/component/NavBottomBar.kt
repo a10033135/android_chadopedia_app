@@ -1,6 +1,5 @@
 package idv.tungfanhall.android_chadopedia_app.ui.component
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -10,7 +9,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
@@ -37,9 +35,9 @@ fun NavBottomBar(navController: NavController) {
         MainBtmNaviIcon(
             label = "首頁",
             icon = Icons.Rounded.Home,
-            isSelected = HomeNavRouter.Doc.path == currentRoute
+            isSelected = HomeNavRouter.Pedia.path == currentRoute
         ) {
-            navController.navigate(HomeNavRouter.Doc.path) { popUpTo(HomeNavRouter.Doc.path) }
+            navController.navigate(HomeNavRouter.Pedia.path) { popUpTo(HomeNavRouter.Pedia.path) }
         }
 
         MainBtmNaviIcon(
@@ -47,7 +45,7 @@ fun NavBottomBar(navController: NavController) {
             icon = Icons.Rounded.Search,
             isSelected = HomeNavRouter.Search.path == currentRoute
         ) {
-            navController.navigate(HomeNavRouter.Search.path) { popUpTo(HomeNavRouter.Doc.path) }
+            navController.navigate(HomeNavRouter.Search.path) { popUpTo(HomeNavRouter.Pedia.path) }
         }
 
         MainBtmNaviIcon(
@@ -55,7 +53,7 @@ fun NavBottomBar(navController: NavController) {
             icon = Icons.Rounded.Settings,
             isSelected = HomeNavRouter.Setting.path == currentRoute
         ) {
-            navController.navigate(HomeNavRouter.Setting.path) { popUpTo(HomeNavRouter.Doc.path) }
+            navController.navigate(HomeNavRouter.Setting.path) { popUpTo(HomeNavRouter.Pedia.path) }
         }
     }
 }

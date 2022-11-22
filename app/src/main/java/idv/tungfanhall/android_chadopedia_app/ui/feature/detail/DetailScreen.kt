@@ -27,11 +27,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
 import idv.tungfanhall.android_chadopedia_app.ui.theme.Gray300
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun SearchScreen(
+    navController: NavHostController,
+    docVM: DocViewModel,
+    mainCateId: String,
+    subCateId: String
+) {
     PediaRow()
 }
 

@@ -9,6 +9,7 @@ import idv.tungfanhall.android_chadopedia_app.model.SubCategory
 import idv.tungfanhall.android_chadopedia_app.ui.logic.BaseViewModel
 import idv.tungfanhall.android_chadopedia_app.utils.FireAuthUtil
 import idv.tungfanhall.android_chadopedia_app.utils.FirebaseUtil
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -36,19 +37,21 @@ class DocViewModel : BaseViewModel(), Input, Output {
     }
 
     override fun getSubCategory(mainCateId: String) {
-        viewModelScope.launch {
-            val collection = FirebaseUtil.subCateCollection.whereEqualTo("main_cate_id", mainCateId)
+        viewModelScope.async {
+            val collection = FirebaseUtil.subCateCollection
+                .whereEqualTo("main_cate_id", mainCateId)
+                .whereEqualTo("enable", true)
             val subCategories = FirebaseUtil.document(collection, SubCategory::class.java)
             KLog.e(tag, "subCategory: $subCategories")
             flowSubCategory.emit(ApiResult.success(subCategories))
         }
     }
 
-    override fun getItemDetail(mainCateId: String, subCateId: String) {
+    override fun getItemDetail(mainCateId: String) {
         viewModelScope.launch {
             val collection = FirebaseUtil.itemDetailCollection
                 .whereEqualTo("main_cate_id", mainCateId)
-                .whereEqualTo("sub_cate_id", subCateId)
+                .whereEqualTo("enable", true)
             val detailItems = FirebaseUtil.document(collection, ItemDetail::class.java)
             KLog.e(tag, "itemDetail: $detailItems")
             flowItemDetail.emit(ApiResult.success(detailItems))
@@ -71,7 +74,7 @@ interface Input {
 
     fun getSubCategory(mainCateId: String)
 
-    fun getItemDetail(mainCateId: String, subCateId: String)
+    fun getItemDetail(mainCateId: String)
 
     fun getCurrentUser()
 }

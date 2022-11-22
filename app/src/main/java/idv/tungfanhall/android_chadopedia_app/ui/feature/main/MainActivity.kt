@@ -73,7 +73,7 @@ class MainActivity : BaseActivity() {
                 TopAppBar(
                     title = {
                         Text(
-                            modifier = Modifier.clickable { navController.navigate(PediaNavRouter.Detail.path) },
+                            modifier = Modifier.clickable { navController.navigate(PediaNavRouter.ItemScreen.path) },
                             text = appBarTitle
                         )
                     },

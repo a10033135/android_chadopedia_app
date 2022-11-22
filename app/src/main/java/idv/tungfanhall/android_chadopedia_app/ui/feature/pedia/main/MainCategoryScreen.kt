@@ -1,4 +1,4 @@
-package idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.doc
+package idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,7 +30,7 @@ import idv.tungfanhall.android_chadopedia_app.ui.navigation.PediaNavRouter
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 
 @Composable
-fun PediaScreen(navController: NavController, docViewModel: DocViewModel) {
+fun MainCategoryScreen(navController: NavController, docViewModel: DocViewModel) {
     val pedias = docViewModel.flowMainCategory.collectAsState()
     when (val state = pedias.value) {
         is ApiResult.Empty -> {
@@ -47,9 +47,8 @@ fun PediaScreen(navController: NavController, docViewModel: DocViewModel) {
 
         is ApiResult.Success -> {
             Success(list = state.result) { mainCateId ->
-                navController.navigate(PediaNavRouter.Detail.path) {
-                    docViewModel.getSubCategory(mainCateId)
-                    popUpTo(HomeNavRouter.Doc.path)
+                navController.navigate(PediaNavRouter.SubCategoriesScreen.path + "/$mainCateId") {
+                    popUpTo(HomeNavRouter.Pedia.path)
                 }
             }
         }

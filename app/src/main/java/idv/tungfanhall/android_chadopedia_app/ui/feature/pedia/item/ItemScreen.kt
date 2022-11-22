@@ -1,4 +1,4 @@
-package idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.detail
+package idv.tungfanhall.android_chadopedia_app.ui.feature.pedia.item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,12 +9,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
 import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 
 @Preview
 @Composable
-fun PediaDetailScreen() {
+fun ItemScreen(navController: NavHostController, docVM: DocViewModel, itemId: String) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
