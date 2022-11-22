@@ -61,8 +61,9 @@ fun PediaScreen(
                     0 -> {
                         PediaScreen(navController, docVM)
                     }
+
                     1 -> {
-                        GridScreen(navController)
+                        GridScreen(navController, docVM)
                     }
                 }
             }

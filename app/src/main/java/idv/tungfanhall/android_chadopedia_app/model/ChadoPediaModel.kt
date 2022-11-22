@@ -1,27 +1,37 @@
 package idv.tungfanhall.android_chadopedia_app.model
 
-data class ChadoMainCategory(
+import com.google.firebase.Timestamp
+
+data class MainCategory(
+    val id: String = "",
     val title: String = "",
     val desc: String = "",
-    val imageUri: String = "",
-    val updateTime: String = "",
+    val image_uri: String = "",
     val enable: Boolean = false,
-    val chadoSubCategory: MutableList<ChadoSubCategory> = mutableListOf(),
-    val item: MutableList<ChadoItemDetail> = mutableListOf()
-) {
-    data class ChadoSubCategory(
-        val title: String = "",
-        val desc: String = "",
-        val imageUri: String = "",
-        val enable: Boolean,
-        val item: MutableList<ChadoItemDetail>,
-    )
+    val create_time: Timestamp = Timestamp.now(),
+    val update_time: Timestamp = Timestamp.now(),
+)
 
-    data class ChadoItemDetail(
-        val title: String = "",
-        val desc: String = "",
-        val imageUri: String = "",
-        val enable: Boolean
-    )
-}
+data class SubCategory(
+    val id: String = "",
+    val main_cate_id: String = "",
+    val title: String = "",
+    val desc: String = "",
+    val image_uri: String = "",
+    val enable: Boolean = false,
+    val create_time: Timestamp = Timestamp.now(),
+    val update_time: Timestamp = Timestamp.now(),
+)
+
+data class ItemDetail(
+    val id: String = "",
+    val main_cate_id: String = "",
+    val sub_cate_id: String = "",
+    val title: String = "",
+    val desc: String = "",
+    val image_uri: String = "",
+    val enable: Boolean = false,
+    val create_time: Timestamp = Timestamp.now(),
+    val update_time: Timestamp = Timestamp.now(),
+)
 

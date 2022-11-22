@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import idv.tungfanhall.android_chadopedia_app.R
-import idv.tungfanhall.android_chadopedia_app.model.ChadoMainCategory
+import idv.tungfanhall.android_chadopedia_app.model.MainCategory
 import idv.tungfanhall.android_chadopedia_app.ui.component.Head
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.ApiResult
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
@@ -31,7 +31,7 @@ import idv.tungfanhall.android_chadopedia_app.ui.theme.GreenBg500
 
 @Composable
 fun PediaScreen(navController: NavController, docViewModel: DocViewModel) {
-    val pedias = docViewModel.flowPedias.collectAsState()
+    val pedias = docViewModel.flowMainCategory.collectAsState()
     when (val state = pedias.value) {
         is ApiResult.Empty -> {
 
@@ -46,8 +46,9 @@ fun PediaScreen(navController: NavController, docViewModel: DocViewModel) {
         }
 
         is ApiResult.Success -> {
-            Success(list = state.result) {
+            Success(list = state.result) { mainCateId ->
                 navController.navigate(PediaNavRouter.Detail.path) {
+                    docViewModel.getSubCategory(mainCateId)
                     popUpTo(HomeNavRouter.Doc.path)
                 }
             }
@@ -72,7 +73,7 @@ private fun Loading() {
 @Preview
 @Composable
 private fun Success(
-    list: List<ChadoMainCategory> = listOf(), onItemClick: () -> Unit = {}
+    list: List<MainCategory> = listOf(), onItemClick: (String) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier
@@ -95,14 +96,14 @@ private fun Success(
 
 
 @Composable
-fun RowItem(item: ChadoMainCategory, action: () -> Unit) {
+fun RowItem(item: MainCategory, action: (String) -> Unit) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
             .fillMaxWidth()
             .wrapContentHeight()
             .background(Color.White)
-            .clickable(onClick = action)
+            .clickable(onClick = { action.invoke(item.id) })
     ) {
         stringResource(id = R.string.app_name)
 

@@ -23,9 +23,8 @@ fun NavGraph(modifier: Modifier = Modifier, navController: NavHostController, do
             composable(HomeNavRouter.Doc.path) { PediaScreen(navController, docVM) }
             composable(HomeNavRouter.Search.path) { SearchScreen() }
             composable(HomeNavRouter.Setting.path) { SettingScreen(docVM) }
-
         }
-        composable(PediaNavRouter.Detail.path) { GridScreen(navController) }
+        composable(PediaNavRouter.Detail.path) { GridScreen(navController, docVM) }
     }
 
 }

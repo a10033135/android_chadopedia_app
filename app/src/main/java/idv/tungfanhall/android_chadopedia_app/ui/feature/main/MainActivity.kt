@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.socks.library.KLog
 import idv.tungfanhall.android_chadopedia_app.ui.base.BaseActivity
 import idv.tungfanhall.android_chadopedia_app.ui.component.NavBottomBar
 import idv.tungfanhall.android_chadopedia_app.ui.navigation.NavGraph
@@ -26,9 +27,6 @@ class MainActivity : BaseActivity() {
 
     private val docVM by viewModel<DocViewModel>()
 
-    private val docInput: Input by lazy { docVM }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initAction()
@@ -41,14 +39,17 @@ class MainActivity : BaseActivity() {
             MainScreen(
                 navController = navController,
                 docViewModel = docVM,
-                isBasicRout = navController.currentBackStackEntryAsState().value?.destination?.route?.contains("home") == true,
+                isBasicRout = navController.currentBackStackEntryAsState().value?.destination?.route?.contains(
+                    "home"
+                ) == true,
                 appBarTitle = "appBarTitle"
             )
         }
     }
 
     override fun initAction() {
-        docVM.getPediaData()
+        KLog.d(tag, "initAction")
+        docVM.getMainCategory()
         docVM.getCurrentUser()
     }
 

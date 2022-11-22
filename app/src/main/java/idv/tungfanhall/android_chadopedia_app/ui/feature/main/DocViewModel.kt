@@ -3,8 +3,11 @@ package idv.tungfanhall.android_chadopedia_app.ui.feature.main
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.socks.library.KLog
-import idv.tungfanhall.android_chadopedia_app.model.ChadoMainCategory
+import idv.tungfanhall.android_chadopedia_app.model.ItemDetail
+import idv.tungfanhall.android_chadopedia_app.model.MainCategory
+import idv.tungfanhall.android_chadopedia_app.model.SubCategory
 import idv.tungfanhall.android_chadopedia_app.ui.logic.BaseViewModel
+import idv.tungfanhall.android_chadopedia_app.utils.FireAuthUtil
 import idv.tungfanhall.android_chadopedia_app.utils.FirebaseUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -13,17 +16,42 @@ class DocViewModel : BaseViewModel(), Input, Output {
 
     private val tag = DocViewModel::class.java.simpleName
 
-    val flowPedias =
-        MutableStateFlow<ApiResult<MutableList<ChadoMainCategory>>>(ApiResult.loading())
+    val flowMainCategory =
+        MutableStateFlow<ApiResult<MutableList<MainCategory>>>(ApiResult.loading())
+
+    val flowSubCategory = MutableStateFlow<ApiResult<MutableList<SubCategory>>>(ApiResult.loading())
+
+    val flowItemDetail = MutableStateFlow<ApiResult<MutableList<ItemDetail>>>(ApiResult.loading())
 
     val flowCurrentUser = MutableStateFlow<ApiResult<FirebaseUser?>>(ApiResult.loading())
 
-    override fun getPediaData() {
+    override fun getMainCategory() {
         KLog.d(tag, "getPediaData")
         viewModelScope.launch {
-            flowPedias.emit(ApiResult.loading())
-            val pedias = FirebaseUtil.document("pedia", ChadoMainCategory::class.java)
-            flowPedias.emit(ApiResult.success(pedias))
+            val mainCategories =
+                FirebaseUtil.document(FirebaseUtil.mainCollection, MainCategory::class.java)
+            KLog.e(tag, "mainCategory: $mainCategories")
+            flowMainCategory.emit(ApiResult.success(mainCategories))
+        }
+    }
+
+    override fun getSubCategory(mainCateId: String) {
+        viewModelScope.launch {
+            val collection = FirebaseUtil.subCateCollection.whereEqualTo("main_cate_id", mainCateId)
+            val subCategories = FirebaseUtil.document(collection, SubCategory::class.java)
+            KLog.e(tag, "subCategory: $subCategories")
+            flowSubCategory.emit(ApiResult.success(subCategories))
+        }
+    }
+
+    override fun getItemDetail(mainCateId: String, subCateId: String) {
+        viewModelScope.launch {
+            val collection = FirebaseUtil.itemDetailCollection
+                .whereEqualTo("main_cate_id", mainCateId)
+                .whereEqualTo("sub_cate_id", subCateId)
+            val detailItems = FirebaseUtil.document(collection, ItemDetail::class.java)
+            KLog.e(tag, "itemDetail: $detailItems")
+            flowItemDetail.emit(ApiResult.success(detailItems))
         }
     }
 
@@ -31,8 +59,7 @@ class DocViewModel : BaseViewModel(), Input, Output {
         KLog.d(tag, "currentUser")
         viewModelScope.launch {
             flowCurrentUser.emit(ApiResult.loading())
-            val user = FirebaseUtil.currentUser
-            flowCurrentUser.emit(ApiResult.success(user))
+            flowCurrentUser.emit(ApiResult.success(FireAuthUtil.currentUser))
         }
     }
 
@@ -40,7 +67,11 @@ class DocViewModel : BaseViewModel(), Input, Output {
 
 interface Input {
 
-    fun getPediaData()
+    fun getMainCategory()
+
+    fun getSubCategory(mainCateId: String)
+
+    fun getItemDetail(mainCateId: String, subCateId: String)
 
     fun getCurrentUser()
 }

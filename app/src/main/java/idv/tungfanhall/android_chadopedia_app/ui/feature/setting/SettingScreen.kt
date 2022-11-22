@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import idv.tungfanhall.android_chadopedia_app.R
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.ApiResult
 import idv.tungfanhall.android_chadopedia_app.ui.feature.main.DocViewModel
+import idv.tungfanhall.android_chadopedia_app.utils.FireAuthUtil
 import idv.tungfanhall.android_chadopedia_app.utils.FirebaseUtil
 
 
@@ -28,13 +29,13 @@ fun SettingScreen(docVM: DocViewModel) {
         when (val state = userResult.value) {
             is ApiResult.Success -> {
                 val user = state.result
-                if (FirebaseUtil.isSignUp) {
+                if (FireAuthUtil.isSignUp) {
                     LoginScreen(user?.displayName ?: "", user?.email ?: "")
                 }
             }
 
             else -> {
-                
+
             }
         }
 
