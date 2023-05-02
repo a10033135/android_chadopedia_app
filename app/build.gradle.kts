@@ -1,7 +1,7 @@
 import BuildExtensions.androidTestImplementationList
 import BuildExtensions.debugImplementationList
-import BuildExtensions.implementationList
 import BuildExtensions.testImplementationList
+import BuildExtensions.implementationList
 
 plugins {
     id("com.android.application")
@@ -62,6 +62,10 @@ dependencies {
     implementationList(Dependencies.firebaseLibraries)
     implementationList(Dependencies.devToolsLibraries)
     testImplementationList(Dependencies.testLibraries)
+    androidTestImplementation(platform(Dependencies.androidTestComposeBom))
     androidTestImplementationList(Dependencies.androidTestLibraries)
     debugImplementationList(Dependencies.debugLibraries)
+
+    implementation(project(":common"))
+    implementation(project(":feature:index"))
 }

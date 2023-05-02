@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "idv.tungfanhall.common"
-    compileSdk = 33
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        minSdk = 28
+        minSdk = AppConfig.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -21,6 +21,12 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = AppConfig.ktCompilerVersion
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -33,12 +39,8 @@ android {
 
 dependencies {
 
-    implementation(platform(Dependencies.composeBomPlatform))
     implementationList(Dependencies.uiLibraries)
     implementationList(Dependencies.composeLibraries)
-    implementationList(Dependencies.androidLibraries)
-    implementationList(Dependencies.networkLibraries)
     implementation(platform(Dependencies.firebaseBom))
     implementationList(Dependencies.firebaseLibraries)
-    implementationList(Dependencies.devToolsLibraries)
 }

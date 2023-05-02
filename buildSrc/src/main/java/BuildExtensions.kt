@@ -13,12 +13,6 @@ object BuildExtensions {
         }
     }
 
-    fun DependencyHandler.implementation(list: List<String>) {
-        list.forEach { dependency ->
-            add("implementation", dependency)
-        }
-    }
-
     fun DependencyHandler.androidTestImplementationList(list: List<String>) {
         list.forEach { dependency ->
             add("androidTestImplementation", dependency)

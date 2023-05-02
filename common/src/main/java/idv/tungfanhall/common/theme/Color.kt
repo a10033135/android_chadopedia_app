@@ -1,4 +1,4 @@
-package idv.tungfanhall.android_chadopedia_app.ui.theme
+package idv.tungfanhall.common.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -15,7 +15,6 @@ object Dependencies {
     private const val composeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview:1.4.2"
     private const val composeUITooling = "androidx.compose.ui:ui-tooling-preview:1.4.2"
     private const val composeMaterial = "androidx.compose.material:material:1.4.2"
-    private const val composeMaterial3 = "androidx.compose.material3:material3"
     private const val composeConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     private const val composeNavigation = "androidx.navigation:navigation-compose:2.5.3"
     private const val composeCoil = "io.coil-kt:coil-compose:2.2.2"
@@ -35,7 +34,6 @@ object Dependencies {
         add(this@Dependencies.composeUITooling)
         add(composeUIToolingPreview)
         add(composeMaterial)
-        add(composeMaterial3)
         add(composeConstraintLayout)
         add(composeNavigation)
         add(composeCoil)
@@ -72,8 +70,8 @@ object Dependencies {
         add(fragmentKtx)
         add(navigationFragment)
         add(navigationUI)
-        add(gmsAD)
-        add(gmsLocation)
+//        add(gmsAD)
+//        add(gmsLocation)
         add(googlePlayCore)
         add(googlePlayCoreKtx)
     }
@@ -127,8 +125,7 @@ object Dependencies {
     }
 
     // test
-    //    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-
+    const val androidTestComposeBom = "androidx.compose:compose-bom:2023.03.00"
 
     // test
     private const val junit = "junit:junit:4.13.2"
@@ -152,10 +149,4 @@ object Dependencies {
         add(composeUITooling)
         add(composeUiTestManifest)
     }
-
-//    testImplementation("junit:junit:4.13.2")
-//    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-//    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-//    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-
 }
