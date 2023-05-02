@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    namespace = "idv.tungfanhall.android_chadopedia_app"
-    compileSdk = 33
+    namespace = AppConfig.appNameSpace
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
         applicationId = "idv.tungfanhall.android_chadopedia_app"
-        minSdk = 28
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -36,13 +36,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.jvmTarget
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = AppConfig.ktCompilerVersion
     }
     packaging {
         resources {

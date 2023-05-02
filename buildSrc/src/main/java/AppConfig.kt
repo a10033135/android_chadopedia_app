@@ -1,11 +1,10 @@
 object AppConfig {
-    const val compileSdk = 31
-    const val minSdk = 24
-    const val targetSdk = 31
 
-    // Module
-    const val abTestingVersionCode = 1
-    const val abTestingVersionName = "1.0"
+    const val appNameSpace = "idv.tungfanhall.android_chadopedia_app"
+
+    const val compileSdk = 33
+    const val minSdk = 28
+    const val targetSdk = 33
 
     // Test
     const val androidTestInstrumentation = "androidx.test.runner.AndroidJUnitRunner"
@@ -15,6 +14,11 @@ object AppConfig {
     const val proguardFile = "proguard-android-optimize.txt"
     const val proguardRules = "proguard-rules.pro"
 
+    // Version Code
+    const val versionCode = 1
+    const val versionName = "1.0"
+
     // JVM
     const val jvmTarget = "1.8"
+    const val ktCompilerVersion = "1.4.3"
 }
