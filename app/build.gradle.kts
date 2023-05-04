@@ -68,4 +68,5 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":feature:index"))
+    implementation(project(":feature:search"))
 }

@@ -14,24 +14,18 @@ import idv.tungfanhall.common.ui.BottomBarIcon
 import idv.tungfanhall.index.screen.IndexScreen
 
 @Composable
-fun RowScope.IndexNavIcon() {
-    BottomBarIcon(label = "首頁", icon = Icons.Rounded.Home)
+fun RowScope.IndexNavIcon(navController: NavController) {
+    BottomBarIcon(label = "首頁", icon = Icons.Rounded.Home, onClick = { navController.navigateToIndexGraph() })
 }
 
-private const val indexGraphRoutePattern = "index_graph"
-private const val indexRoute = "index_route"
+const val indexRoute = "index_route"
 
 fun NavController.navigateToIndexGraph(navOptions: NavOptions? = null) {
-    navigate(indexGraphRoutePattern, navOptions)
+    navigate(indexRoute, navOptions)
 }
 
 fun NavGraphBuilder.indexGraph() {
-    navigation(
-        route = indexGraphRoutePattern,
-        startDestination = indexRoute
-    ) {
-        composable(route = indexRoute) {
-            IndexScreen()
-        }
+    composable(route = indexRoute) {
+        IndexScreen()
     }
 }
