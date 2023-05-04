@@ -12,13 +12,14 @@ object Dependencies {
     private const val composeActivity = "androidx.activity:activity-compose:1.7.1"
     private const val composeUI = "androidx.compose.ui:ui:1.4.2"
     private const val composeUIGraphic = "androidx.compose.ui:ui-graphics"
+    private const val composeUITooling = "androidx.compose.ui:ui-tooling:1.4.2"
     private const val composeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview:1.4.2"
-    private const val composeUITooling = "androidx.compose.ui:ui-tooling-preview:1.4.2"
     private const val composeMaterial = "androidx.compose.material:material:1.4.2"
     private const val composeMaterial3 = "androidx.compose.material3:material3:1.0.1"
     private const val composeConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     private const val composeNavigation = "androidx.navigation:navigation-compose:2.5.3"
     private const val composeCoil = "io.coil-kt:coil-compose:2.2.2"
+    private const val composeFoundation = "androidx.compose.foundation:foundation:1.5.0-alpha03"
 
     val uiLibraries = arrayListOf<String>().apply {
         add(androidxCoreKtx)
@@ -39,6 +40,7 @@ object Dependencies {
         add(composeConstraintLayout)
         add(composeNavigation)
         add(composeCoil)
+        add(composeFoundation)
     }
 
     // Android

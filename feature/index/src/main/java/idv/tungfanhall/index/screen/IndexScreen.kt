@@ -1,30 +1,51 @@
 package idv.tungfanhall.index.screen
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import idv.tungfanhall.index.R
+import idv.tungfanhall.common.ui.card.IntroAppCard
 
 @Preview
 @Composable
 fun IndexScreen() {
 
+    val uiList = remember { mutableStateListOf("IntroAppCard",) }
+    val visibleMap = remember { mutableStateMapOf<Int, Boolean>() }
 
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxWidth()
             .fillMaxHeight()
+            .fillMaxWidth()
+            .background(color = Color.LightGray)
     ) {
-        Text(text = "日本茶道學習第一站", color = Color.Black)
-        Text(text = "茶杓銘、季語、家元等必備術語日文念法通通有，分門別類簡單好查詢，圖文介紹好理解。茶道事典百科－Chadopedia分享給您最正確的日式茶道知識與風雅趣聞。")
-        Image(painter = painterResource(id = R.drawable.home_background_mty1uz), contentDescription = "IndexImage")
+        itemsIndexed(uiList) { index, ui ->
+            when (ui) {
+                "IntroAppCard" -> {
 
+                    AnimatedVisibility(
+                        visible = visibleMap.getOrDefault(index, true), // 設為 false 以隱藏該項目
+                        enter = fadeIn(), // 進入動畫效果
+                        exit = shrinkVertically(), // 離開動畫效果
+                    ) {
+                        IntroAppCard(onClick = { visibleMap[index] = false })
+                    }
+                }
+
+            }
+        }
     }
 }

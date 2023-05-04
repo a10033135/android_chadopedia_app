@@ -12,7 +12,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun RowScope.BottomBarIcon(label: String, icon: ImageVector, onClick: () -> Unit = {}) {
+fun RowScope.BottomBarIcon(
+    label: String,
+    icon: ImageVector,
+    selected: Boolean = false,
+    onClick: () -> Unit = {},
+) {
     BottomNavigationItem(
         label = { Text(text = label) },
         icon = {
@@ -23,7 +28,8 @@ fun RowScope.BottomBarIcon(label: String, icon: ImageVector, onClick: () -> Unit
             )
         },
         unselectedContentColor = Color.White,
+        selectedContentColor = Color.Green,
         onClick = onClick,
-        selected = false
+        selected = selected
     )
 }

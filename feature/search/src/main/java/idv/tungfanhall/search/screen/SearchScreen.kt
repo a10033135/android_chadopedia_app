@@ -18,9 +18,7 @@ internal fun SearchScreen() {
             .fillMaxWidth()
             .fillMaxHeight()
     ) {
-        Text(text = "日本茶道學習第一站", color = Color.Black)
-        Text(text = "茶杓銘、季語、家元等必備術語日文念法通通有，分門別類簡單好查詢，圖文介紹好理解。茶道事典百科－Chadopedia分享給您最正確的日式茶道知識與風雅趣聞。")
-
+        Text(text = "搜尋", color = Color.Black)
     }
 
 }
