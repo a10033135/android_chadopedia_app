@@ -6,8 +6,8 @@ import BuildExtensions.implementationList
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
-
 android {
     namespace = AppConfig.appNameSpace
     compileSdk = AppConfig.compileSdk
@@ -65,7 +65,7 @@ dependencies {
     androidTestImplementation(platform(Dependencies.androidTestComposeBom))
     androidTestImplementationList(Dependencies.androidTestLibraries)
     debugImplementationList(Dependencies.debugLibraries)
-
+    implementation("com.google.firebase:firebase-analytics-ktx")
     implementation(project(":common"))
     implementation(project(":feature:index"))
     implementation(project(":feature:search"))

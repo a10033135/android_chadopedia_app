@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "292955403698",
+    "firebase_url": "https://chadopedia-default-rtdb.firebaseio.com",
+    "project_id": "chadopedia",
+    "storage_bucket": "chadopedia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292955403698:android:f38d87bda240ce3235a0ab",
+        "android_client_info": {
+          "package_name": "idv.tungfangall.android_chadopedia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292955403698-t7aak7dqt79a3lraf1timqvnmjjfai1m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "idv.tungfangall.android_chadopedia_app",
+            "certificate_hash": "52b20ade982dcad89a1b14df688f0c3442894181"
+          }
+        },
+        {
+          "client_id": "292955403698-luj6out9kegtf1tl7s1p8ahs98msiruk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDFOULizyQPKu0Wo2cOjUNlL85zxBFhv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292955403698-luj6out9kegtf1tl7s1p8ahs98msiruk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292955403698:android:c90305779c5bc85d35a0ab",
+        "android_client_info": {
+          "package_name": "idv.tungfanhall.android_chadopedia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292955403698-2s9sqng7mrs55tnsire60l4508qfurvv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "idv.tungfanhall.android_chadopedia_app",
+            "certificate_hash": "d020fde152deac4c834ed3963816a4a964b8df32"
+          }
+        },
+        {
+          "client_id": "292955403698-8ajhdu9r7e4310113v7bc04en1ek89fl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "idv.tungfanhall.android_chadopedia_app",
+            "certificate_hash": "52b20ade982dcad89a1b14df688f0c3442894181"
+          }
+        },
+        {
+          "client_id": "292955403698-luj6out9kegtf1tl7s1p8ahs98msiruk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDFOULizyQPKu0Wo2cOjUNlL85zxBFhv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292955403698-luj6out9kegtf1tl7s1p8ahs98msiruk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
