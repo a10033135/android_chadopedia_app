@@ -98,7 +98,7 @@ object Dependencies {
     }
 
     // Firebase
-    const val firebaseBom = "com.google.firebase:firebase-bom:31.0.3"
+    const val firebaseBom = "com.google.firebase:firebase-bom:32.0.0"
 
     // firebase auth
     private const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
@@ -106,7 +106,7 @@ object Dependencies {
     private const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:7.2.0"
 
     // Firestore
-    private const val firestore = "com.google.firebase:firebase-firestore-ktx:24.5.0"
+    private const val firestore = "com.google.firebase:firebase-firestore-ktx"
 
     // cloudinary
     private const val cloudinary = "com.cloudinary:kotlin-url-gen:1.0.0"
