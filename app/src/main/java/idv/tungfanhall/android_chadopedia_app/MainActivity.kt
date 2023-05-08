@@ -1,6 +1,7 @@
 package idv.tungfanhall.android_chadopedia_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -40,9 +41,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import idv.tungfanhall.common.model.common.isSelected
-import idv.tungfanhall.common.model.common.route
-import idv.tungfanhall.common.theme.Android_chadopedia_appTheme
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import idv.tungfanhall.common.model.firestore.ChadoContent
+import idv.tungfanhall.common.model.firestore.MainCategory
+import idv.tungfanhall.common.model.firestore.SubCategory
 import idv.tungfanhall.common.ui.BottomBarIcon
 import idv.tungfanhall.index.navigation.IndexNavIcon
 import idv.tungfanhall.index.navigation.indexGraph
@@ -99,7 +102,60 @@ fun MainScreen() {
                     },
                     actions = {
                         IconButton(
-                            onClick = { }
+                            onClick = {
+                                val firestore = Firebase.firestore
+                                firestore
+                                    .collection("MainCate")
+                                    .get()
+                                    .addOnSuccessListener {
+                                        it.documents.forEach {
+                                            val mainCate = it.toObject(MainCategory::class.java)
+                                            Log.e("TAG", mainCate.toString())
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("TAG", it.toString())
+                                    }
+
+                                firestore
+                                    .collection("SubCate")
+                                    .get()
+                                    .addOnSuccessListener {
+                                        it.documents.forEach {
+                                            val mainCate = it.toObject(MainCategory::class.java)
+                                            Log.e("TAG", mainCate.toString())
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("TAG", it.toString())
+                                    }
+
+                                firestore
+                                    .collection("SubCate")
+                                    .get()
+                                    .addOnSuccessListener {
+                                        it.documents.forEach {
+                                            val mainCate = it.toObject(SubCategory::class.java)
+                                            Log.e("TAG", mainCate.toString())
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("TAG", it.toString())
+                                    }
+
+                                firestore
+                                    .collection("ChadoContent")
+                                    .get()
+                                    .addOnSuccessListener {
+                                        it.documents.forEach {
+                                            val mainCate = it.toObject(ChadoContent::class.java)
+                                            Log.e("TAG", mainCate.toString())
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("TAG", it.toString())
+                                    }
+                            }
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.Home,
@@ -131,7 +187,7 @@ fun NavBottomBar(navController: NavHostController, destination: NavDestination?)
         backgroundColor = Color.Gray
     ) {
         IndexNavIcon(navController, destination)
-        SearchNavIcon(navController,destination)
+        SearchNavIcon(navController, destination)
         BottomBarIcon(label = "設定", icon = Icons.Rounded.Settings)
     }
 }
